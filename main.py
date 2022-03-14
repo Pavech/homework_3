@@ -1,12 +1,14 @@
+"""Домашняя работа №3."""
 import json
 import sqlite3
 from typing import Any
+
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
 
 def read_json(json_file: str) -> Any:
-    """Чтение файла и его валидация со схемой"""
+    """Чтение файла и его валидация со схемой."""
     try:
         with open(json_file, 'r', encoding='utf-8') as file:
             json_dict = json.load(file)
@@ -19,12 +21,13 @@ def read_json(json_file: str) -> Any:
 
 
 def create_table(db: Any) -> None:
+    """Создание БД."""
     cursor = db.cursor()
     cursor.executescript('''
 CREATE TABLE IF NOT EXISTS shops (id INTEGER PRIMARY KEY AUTOINCREMENT, address VARCHAR(100));
-CREATE TABLE IF NOT EXISTS shops_goods (id INTEGER PRIMARY KEY AUTOINCREMENT, id_good INT, 
+CREATE TABLE IF NOT EXISTS shops_goods (id INTEGER PRIMARY KEY AUTOINCREMENT, id_good INT,
         id_shop INT, amount INT, FOREIGN KEY (id_shop) REFERENCES shops (id));
-CREATE TABLE IF NOT EXISTS goods (id INTEGER UNIQUE PRIMARY KEY NOT NULL, name VARCHAR(50), 
+CREATE TABLE IF NOT EXISTS goods (id INTEGER UNIQUE PRIMARY KEY NOT NULL, name VARCHAR(50),
         package_id INT, FOREIGN KEY (id) REFERENCES shops_goods (id_good));
 CREATE TABLE IF NOT EXISTS packages (id INTEGER PRIMARY KEY AUTOINCREMENT, type PACKAGE_TYPE,
         height FLOAT, width FLOAT, depth FLOAT, FOREIGN KEY (id) REFERENCES goods (package_id));;
@@ -32,7 +35,7 @@ CREATE TABLE IF NOT EXISTS packages (id INTEGER PRIMARY KEY AUTOINCREMENT, type 
 
 
 def insert(db: Any, json_data: dict) -> Any:
-    """Запись данных в БД"""
+    """Запись данных в БД."""
     cursor = db.cursor()
     type_package = json_data["package_params"]["type"]
     width_package = json_data["package_params"]["width"]
