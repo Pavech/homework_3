@@ -1,8 +1,7 @@
 import os
 import sys
 import unittest
-
-from tests import TEST_CASES
+from test.tests import TEST_CASES
 
 from main import main
 
