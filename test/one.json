@@ -1,0 +1,10 @@
+{
+    "id" : 10,
+    "name" : "NVIDIA GeForce RTX 3090",
+    "package_params" : {
+            "type" : "cardboard_box",
+            "width" : 5,
+            "height" : 15,
+            "depth" : 11
+        }
+}

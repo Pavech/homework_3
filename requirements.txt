@@ -1,0 +1,11 @@
+-r requirements.txt
+
+flake8==4.0.1
+jsonschema==4.4.0
+mypy==0.940
+pep257==0.7.0
+pycodestyle==2.8.0
+pyflakes==2.4.0
+typing-extensions==4.1.1
+vulture==2.3
+isort==5.10.1

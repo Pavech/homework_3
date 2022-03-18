@@ -1,0 +1,62 @@
+{
+    "type": "object",
+    "required": [
+        "id",
+        "name",
+        "package_params",
+        "location_and_quantity"
+    ],
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "package_params": {
+            "type": "object",
+            "required": [
+                "type",
+                "width",
+                "height",
+                "depth"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "width": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "depth": {
+                    "type": "number"
+                }
+            }
+        },
+        "location_and_quantity": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "location",
+                            "amount"
+                        ],
+                        "properties": {
+                            "location": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
